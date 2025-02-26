@@ -1,0 +1,18 @@
+{
+  "name": "github-repo-finder-app",
+  "version": "1.0.0",
+  "description": "Repo Finder is a simple yet powerful web application that allows users to search for GitHub user accounts and organization accounts efficiently. It provides an intuitive interface to find profiles and explore developers or organizations on GitHub.",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^6.2.0"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}

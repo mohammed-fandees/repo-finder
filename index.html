@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles.scss">
+    <title>Github User Search App</title>
+  </head>
+  <body>
+  <div class="container">
+    <header>
+      <p class="logo">repo-finder</p>
+      <div class="SearchForm">
+        <form class="form">
+          <div class="choices">
+            <label tabindex="1">
+              <input name="searchType" type="radio" value="users" /> 
+              Users
+            </label>
+            <label tabindex="2">
+              <input name="searchType" type="radio" value="org" />
+              Organizations
+            </label>
+          </div>
+          <input type="text" class="input" placeholder="Search GitHub" aria-label="search-input" required tabindex="3" />
+          <button class="button" type="submit" tabindex="4">Search</button>
+        </form>
+      </div>
+    </header>
+    <div class="cards">Start your search...</div>
+  </div>  
+  <script type="module" src="./index.js"></script>
+  </body>
+</html>
