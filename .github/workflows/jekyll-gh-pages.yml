@@ -1,4 +1,4 @@
-# Sample workflow for building, processing, and deploying a Jekyll site to GitHub Pages
+# GitHub Actions workflow for processing and deploying a Jekyll site
 name: Deploy Jekyll with Preprocessing
 
 on:
@@ -16,7 +16,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -33,8 +32,7 @@ jobs:
           npm install -g terser clean-css-cli html-minifier-terser
 
       - name: Convert Sass to CSS
-        run: |
-          sass styles.sass styles.css --style=compressed
+        run: sass styles.scss styles.css --style=compressed
 
       - name: Minify CSS
         run: cleancss -o styles.min.css styles.css
@@ -42,12 +40,15 @@ jobs:
       - name: Uglify JavaScript
         run: terser index.js -o index.min.js --compress --mangle
 
-      - name: Minify HTML and Update Links
+      - name: Minify HTML
         run: |
-          sed -i 's/styles.sass/styles.min.css/g' index.html
-          sed -i 's/index.js/index.min.js/g' index.html
           html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o index.min.html index.html
           mv index.min.html index.html
+
+      - name: Update HTML links
+        run: |
+          sed -i 's/styles.scss/styles.min.css/g' index.html
+          sed -i 's/index.js/index.min.js/g' index.html
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
@@ -58,10 +59,9 @@ jobs:
       - name: Upload Processed Files
         uses: actions/upload-pages-artifact@v3
 
-  # Deployment job
   deploy:
     environment:
-      name: page-builder
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
