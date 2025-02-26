@@ -35,7 +35,7 @@
    ```
 
 ## 🌍 Live Demo
-You can try out the app **[here](your-live-demo-url.com)**
+You can try out the app **[here](https://mohammed-fandees.github.io/repo-finder/)**
 
 ## 🤝 Contributing
 Feel free to contribute by **submitting issues** or **creating pull requests**.
