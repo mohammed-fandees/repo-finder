@@ -34,14 +34,14 @@ jobs:
 
       - name: Convert Sass to CSS
         run: |
-          sass styles.scss styles/main.css --style=compressed
+          sass styles.scss styles.css --style=compressed
           rm styles.scss
 
       - name: Minify CSS
-        run: cleancss -o styles/main.min.css styles/main.css
+        run: cleancss -o styles.min.css styles.css
 
       - name: Uglify JavaScript
-        run: terser index.js -o scripts/main.min.js --compress --mangle
+        run: terser index.js -o index.min.js --compress --mangle
 
       - name: Minify HTML
         run: |
@@ -50,8 +50,8 @@ jobs:
 
       - name: Update HTML links
         run: |
-          sed -i 's/main.css/main.min.css/g' index.html
-          sed -i 's/main.js/main.min.js/g' index.html
+          sed -i 's/styles.sass/styles.min.css/g' index.html
+          sed -i 's/index.js/index.min.js/g' index.html
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
