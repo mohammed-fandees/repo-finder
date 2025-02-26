@@ -34,14 +34,14 @@ jobs:
 
       - name: Convert Sass to CSS
         run: |
-          sass styles/main.scss styles/main.css --style=compressed
-          rm styles/main.scss
+          sass styles.scss styles/main.css --style=compressed
+          rm styles.scss
 
       - name: Minify CSS
         run: cleancss -o styles/main.min.css styles/main.css
 
       - name: Uglify JavaScript
-        run: terser scripts/main.js -o scripts/main.min.js --compress --mangle
+        run: terser index.js -o scripts/main.min.js --compress --mangle
 
       - name: Minify HTML
         run: |
